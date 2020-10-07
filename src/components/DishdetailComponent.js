@@ -18,7 +18,7 @@ class  DishDetail extends Component {
             <div>
                 
                <li>{eachcomment.comment}</li>
-                <li>--{eachcomment.author}, {eachcomment.date}</li> 
+                <li>--{eachcomment.author}, {new Intl.DateTimeFormat('en-US',{year:'numeric', month:'short', day:'2-digit'}).format(new Date(Date.parse(eachcomment.date)))}</li> 
                  
                 </div>);
         });
@@ -29,13 +29,14 @@ class  DishDetail extends Component {
             </div>
         );
     }else
-       {console.log("111"); return(<div></div>);
+        return(<div></div>);
     }
 
-}
+
     render(){
         if(this.props.dish != null){
     return (
+        <div class="container">
     <div className="row">
         <div key={this.props.dish.id} className="col-12 col-md-5 m-1">
         <Card>
@@ -49,14 +50,14 @@ class  DishDetail extends Component {
       
         </div>
       
-    
+    </div>
     
     );
 
 
 }
     else {return(<div></div>); }
-  }
-  }
-  export default DishDetail;
+  
+    }}
+  export default DishDetail;  
   
