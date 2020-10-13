@@ -39,15 +39,15 @@ function RenderComments({ comments }) {
     const com = comments.map((eachcomment) => {
       return (
         <div>
-          <li>{eachcomment.comment}</li>
+          <li><p>{eachcomment.comment}</p></li>
           <li>
-            --{eachcomment.author},{" "}
+            <p>--{eachcomment.author},{" "}
             {new Intl.DateTimeFormat("en-US", {
               year: "numeric",
               month: "short",
               day: "2-digit",
             }).format(new Date(Date.parse(eachcomment.date)))}
-          </li>
+         </p> </li>
         </div>
       );
     });
@@ -84,7 +84,7 @@ class CommentForm extends Component {
 
   render() {
     return (
-      <div className="col-12 col-md-9">
+      <div className="container">
         <Button outline onClick={this.toggleModal}>
           <span className="fa fa-pencil fa-lg"></span> Submit Comment
         </Button>
@@ -95,34 +95,25 @@ class CommentForm extends Component {
             <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
               
               <Row className="form-group" >
-              
-              <Label htmlFor="Rating" md={4}>
-                  Rating
-                </Label>
-              </Row>
-              <Row className="form-group" >
-              <Col md={8}>
-              
-              <Label select>
-                <Control.select
+              <Col md={12}>
+              <Label htmlFor="rating" >Rating</Label>
+              <Control.select
                     model=".rating"
-                    id="rating"
                     name="rating"
-                    className="form-select-input" >
-                     <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option> 
+                    className="form-control" >
+                    <option >1</option>
+                    <option >2</option>
+                    <option >3</option>
+                    <option >4</option>
+                    <option >5</option> 
                     </Control.select>
-                    </Label>
+                 
               </Col>
               </Row>
               <Row className="form-group">
-                <Label htmlFor="author" md={4}>Your Name
-                </Label></Row>
-                <Row className="form-group">
-                <Col>
+              <Col md={12}>
+                <Label htmlFor="author" >Your Name
+                </Label>
                   <Control.text
                     model=".author"
                     id="author"
@@ -148,11 +139,10 @@ class CommentForm extends Component {
                   </Col>
               </Row>
               <Row className="form-group">
-                <Label htmlFor="comment" md={2}>
+                <Col md={12}>
+                <Label htmlFor="comment" >
                   Comment
-                </Label></Row>
-                <Row className="form-group">
-                <Col md={10}>
+                </Label>
                   <Control.textarea
                     model=".comment"
                     id="comment"
@@ -196,9 +186,8 @@ const DishDetail = (props) => {
 
         <div className="row">
           <RenderDish dish={props.dish} />
-          <div className="col-12 col-md-5 m-1">
-            <RenderComments comments={props.comments} />
-          </div>
+          <RenderComments comments={props.comments} />
+        
         </div>
       </div>
     );
